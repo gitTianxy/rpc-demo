@@ -12,7 +12,8 @@
 
     <!-- 使用zookeeper注册中心订阅服务 -->
     <dubbo:registry address="zookeeper://${dubbo.config.registry.zk.host}"/>
-    <dubbo:reference id="demoService" interface="com.java.demo.rpc.common.DemoService" />
+    <dubbo:reference id="demoService" interface="com.java.demo.rpc.common.DemoService"
+        cluster="failover" retries="2" />
 
     <!-- 直连provider服务(无负载均衡, 常用于测试) -->
     <!--<dubbo:reference id="demoService" interface="com.java.demo.rpc.common.DemoService" url="dubbo://127.0.0.1:20880" />-->

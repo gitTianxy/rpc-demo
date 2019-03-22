@@ -21,7 +21,9 @@
     <dubbo:protocol name="dubbo" port="#{systemProperties.dubbo_port}" host="${dubbo.config.provider.host}"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.java.demo.rpc.common.DemoService" ref="demoService"/>
+    <dubbo:service interface="com.java.demo.rpc.common.DemoService" ref="demoService"
+                   protocol="dubbo"
+                   loadbalance="random" weight="#{systemProperties.dubbo_weight}"/>
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="demoService" class="com.java.demo.rpc.server.DemoServiceImpl"/>

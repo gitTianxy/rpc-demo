@@ -13,10 +13,10 @@ public class Consumer {
         context.start();
         DemoService svc = (DemoService) context.getBean("demoService");
         int c = 0;
-        while (c++ < 20) {
+        while (c++ < 40) {
             String msg = svc.sayHello("Kevin Tian");
             System.out.println("Consumer ==> " + msg);
-            Thread.sleep(1000);
+            Thread.sleep(100);
         }
         context.destroy();
     }
