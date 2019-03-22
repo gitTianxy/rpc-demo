@@ -11,10 +11,14 @@
     <dubbo:application name="dubbo-demo-provider"/>
 
     <!-- 使用zk广播注册中心暴露服务地址 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:registry address="zookeeper://${dubbo.config.registry.zk.host}"/>
 
-    <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20880"/>
+    <!-- 用dubbo协议在JVM参数指定端口暴露服务
+        name: 服务名称, 服务在zk中注册的根目录
+        port: 同一主机上的不同服务实例要用不同的端口注册, 不同主机上的可以用同一端口注册
+        host: 本机ip地址
+    -->
+    <dubbo:protocol name="dubbo" port="#{systemProperties.dubbo_port}" host="${dubbo.config.provider.host}"/>
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.java.demo.rpc.common.DemoService" ref="demoService"/>
