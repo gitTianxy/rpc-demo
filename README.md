@@ -40,8 +40,18 @@ rpc demo built upon dubbo
 ### dubbo的角色/功能
 
 ### 最佳实践
-* https://dubbo.incubator.apache.org/zh-cn/docs/user/best-practice.html
-* https://dubbo.incubator.apache.org/zh-cn/docs/user/recommend.html
+* Consumer 端属性
+```
+timeout：方法调用的超时时间
+retries：失败重试次数; 缺省是2
+loadbalance：负载均衡算法; 缺省是random。
+actives：消费者端的最大并发调用限制; 当 Consumer 对一个服务的并发调用到上限后，新调用会阻塞直到超时
+```
+* Provider 端属性
+```
+threads：服务线程池大小
+executes：一个服务提供者并行执行请求上限，即当 Provider 对一个服务的并发调用达到上限后，新调用会阻塞
+```
 
 ### 性能测试
 * 服务端
